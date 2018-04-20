@@ -23,7 +23,9 @@ class Library extends Component {
                 ];
         }
     }
-
+    componentDidMount(){
+        this.fetchMovies();
+    }
     async fetchMovies(){
         const movie = await fetch('/api/library/movies', {
             credentials: 'include'
@@ -42,8 +44,7 @@ class Library extends Component {
                 >
                 Add Movie
                 </Link>
-                <button onClick={this.fetchMovies.bind(this)}>Show</button>
-                <MovieList movies={this.state.movies} />
+                <MovieList search={false} movies={this.state.movies} />
             </div>
         );
     }

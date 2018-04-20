@@ -16,7 +16,7 @@ class AddMovie extends Component {
                         <button type="submit">Search</button>
                     </form>
                 </div>
-                <MovieList movies={this.state.movies}/>
+                <MovieList search={true} movies={this.state.movies}/>
            </div>
         );
     }
