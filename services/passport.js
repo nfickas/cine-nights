@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -30,4 +31,34 @@ passport.use(new GoogleStrategy({
         const user = await new User({ googleId: profile.id, movies: [] }).save()
         done(null, user);
     })
+);
+
+passport.use(new FacebookStrategy({
+    clientID: keys.facebookAppID,
+    clientSecret: keys.facebookAppSecret,
+    callbackURL: "/auth/facebook/callback",
+    profileFields : ['id', 'email', 'name', 'photos']
+  },
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+      User.findOne({ facebookId: profile.id }, function(err, user) {
+          if (err)
+            return done(err);
+
+            // if the user is found, then log them in
+            if (user) {
+                return done(null, user); 
+            } else {
+                // if there is no user found with that facebook id, create them
+                const newUser = new User();
+                newUser.facebookId = profile.id;
+                newUser.profileName = profile.name.givenName + ' ' + profile.name.familyName;
+                newUser.movies = [];
+                newUser.picture = profile.photos[0].value;
+                newUser.save();
+                return done(null, newUser);
+            }
+        });
+    });
+  })
 );
