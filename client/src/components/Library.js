@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Movie from './Movie';
+import MovieList from './MovieList';
 
 
 class Library extends Component {
@@ -24,6 +24,15 @@ class Library extends Component {
         }
     }
 
+    async fetchMovies(){
+        const movie = await fetch('/api/library/movies', {
+            credentials: 'include'
+        });
+        const data = await movie.json();
+        this.setState({movies: data});
+            
+    }
+
     render(){
         return(
             <div className="App">
@@ -33,7 +42,8 @@ class Library extends Component {
                 >
                 Add Movie
                 </Link>
-                <Movie movie={this.state.movies} search={false} />
+                <button onClick={this.fetchMovies.bind(this)}>Show</button>
+                <MovieList movies={this.state.movies} />
             </div>
         );
     }

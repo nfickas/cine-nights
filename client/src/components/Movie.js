@@ -12,7 +12,6 @@ class Movie extends Component {
                 "Year": this.props.movie.Year,
                 "Poster": this.props.movie.Poster
         });
-        console.log(data);
         fetch('/api/movies', {
             credentials: 'include',
             method: 'POST',
