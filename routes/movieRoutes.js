@@ -1,4 +1,4 @@
-var request = require('request');
+const request = require('request');
 var mongoose = require('mongoose');
 const Movie = mongoose.model('movies');
 const User = mongoose.model('users');
