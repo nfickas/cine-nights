@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
+import UserInfo from './UserInfo';
 
 
 class Library extends Component {
@@ -10,19 +11,6 @@ class Library extends Component {
         this.state = {movies: []};
     }
 
-    renderContent(){
-        switch(this.props.auth){
-            case null:
-                return;
-            case true:
-                return;
-            default:
-                return [
-                    <img key="1" src={this.props.auth.picture}></img>,
-                    <h5 key="2">{this.props.auth.profileName}</h5>
-                ];
-        }
-    }
     componentDidMount(){
         this.fetchMovies();
     }
@@ -38,9 +26,9 @@ class Library extends Component {
     render(){
         return(
             <div className="App">
-                {this.renderContent()}
+                <UserInfo />
                 <Link 
-                        to="library/movies/new" 
+                        to="library/movies/new"
                 >
                 Add Movie
                 </Link>

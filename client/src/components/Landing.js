@@ -1,13 +1,16 @@
 import React from 'react';
+import { Jumbotron } from 'react-bootstrap';
 
 const Landing = () => {
     return (
-        <div style={{ textAlign: 'center' }}>
-            <h1>
-                Cine Nights!
-            </h1>
-            Easily browse your movies from the convenience of your computer
-        </div>
+        <Jumbotron>
+            <div style={{ textAlign: 'center' }}>
+                <h1>
+                    Cine Nights!
+                </h1>
+                Easily browse your movies from the convenience of your computer
+            </div>
+        </Jumbotron>
     );
 };
 

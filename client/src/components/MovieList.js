@@ -1,17 +1,31 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
+import MovieRow from './MovieRow';
 
 class MovieList extends Component {
-
   renderList() {
-    return (this.props.movies).map(movie => <Movie key={movie.imdbID} movie={movie} search={this.props.search} />);
+    if(typeof(this.props.movies) != 'undefined' && (this.props.movies).length !== 0){
+      let moviesArrays = [];
+      let currArray = [];
+      for(let i = 0; i < (this.props.movies).length; i += 1) {
+        currArray.push(this.props.movies[i]);
+        if ((i + 1) % 3 == 0){
+          moviesArrays.push(currArray);
+          currArray = [];
+        }
+        else if((i+1) == (this.props.movies).length){
+          moviesArrays.push(currArray);
+        }
+      }
+      return moviesArrays.map((movieArray) => <MovieRow movies={movieArray} />);
+    }
   }
 
   render() {
     return (
-      <ul className="list-group col-sm-4">
-        {this.renderList()}
-      </ul>
+        <div className="movieList">
+          {this.renderList()}
+        </div>
     );
   }
 }

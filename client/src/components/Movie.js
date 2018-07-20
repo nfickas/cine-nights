@@ -25,26 +25,17 @@ class Movie extends Component {
 
     renderAddButton(){
         if(this.props.search){
-            return <Link to='/library' onClick={this.addMovie.bind(this)} className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">add</i></Link>;
+            return <Link to='/library' onClick={this.addMovie.bind(this)} className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">check_circle</i></Link>;
         }
         return;
     }
     render(){
         return(
-            <div className="row">
-                <div className="col s12 m6">
-                    <div className="card">
-                        <div className="card-image">
-                            <img src={this.props.movie.Poster} />
-                            {this.renderAddButton()}
-                        </div>
-                        <div className="card-content">
-                            <span className="card-title">{this.props.movie.Title}</span>
-                            <p>{this.props.movie.Year}</p>
-                        </div>
-                    </div>
+                <div className="panel panel-primary">
+                    <div className="panel-heading">{this.props.movie.Title}</div>
+                    <div className="panel-body"><img src={this.props.movie.Poster} className="img-responsive" style={{ width: '100%' }} alt="Image"></img></div>
+                    <div className="panel-footer">{this.props.movie.Year} {this.renderAddButton()}</div>
                 </div>
-            </div>
         );
     }
 }

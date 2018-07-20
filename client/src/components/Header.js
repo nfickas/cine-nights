@@ -8,23 +8,25 @@ class Header extends Component {
             case null:
                 return;
             case false:
-                return <li><a href="/auth/facebook">Login with Facebook</a></li>;
+                return <li><a href="/auth/facebook"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>;
             default:
-                return <li><a href="/api/logout">Logout</a></li>;
+                return <li><a href="/api/logout"><span className="glyphicon glyphicon-log-out"></span> Logout</a></li>;
         }
     }
 
     render() {
         return (
-            <nav>
-                <div className="nav-wrapper">
-                    <Link 
-                        to={this.props.auth ? '/library':'/'} 
-                        className="left brand-logo"
-                    >
-                        Cine Nights
-                    </Link>
-                    <ul className="right">
+            <nav className="navbar navbar-inverse">
+                <div className="container-fluid">
+                    <div className="navbar-header">
+                        <Link className="navbar-brand" to={this.props.auth ? '/library':'/'}>
+                            Cine Nights
+                        </Link>
+                    </div>
+                    <ul className="nav navbar-nav">
+                        <li className="active"><a>Home</a></li>
+                    </ul>
+                    <ul className="nav navbar-nav navbar-right">
                         {this.renderContent()}
                     </ul>
                 </div>
