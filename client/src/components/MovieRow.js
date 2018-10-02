@@ -4,7 +4,7 @@ import Movie from './Movie';
 class MovieRow extends Component {
     renderRow() {
         return (this.props.movies).map(movie => 
-            <div className="col-sm-4">
+            <div key={movie.imdbID} className="col-sm-4">
                 <Movie key={movie.imdbID} movie={movie} search={this.props.search} />
             </div>
         );

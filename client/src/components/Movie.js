@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -20,12 +19,13 @@ class Movie extends Component {
             },
             body: data
         })
-        .then(res => console.log(res));
+        .then(res => alert(`${this.props.movie.Title} was added to your library!`))
+        .catch(res => alert('This movie could not be added.'));
     }
 
     renderAddButton(){
         if(this.props.search){
-            return <Link to='/library' onClick={this.addMovie.bind(this)} className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">check_circle</i></Link>;
+            return <button onClick={this.addMovie.bind(this)} className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">check_circle</i></button>;
         }
         return;
     }
@@ -33,7 +33,7 @@ class Movie extends Component {
         return(
                 <div className="panel panel-primary">
                     <div className="panel-heading">{this.props.movie.Title}</div>
-                    <div className="panel-body"><img src={this.props.movie.Poster} className="img-responsive" style={{ width: '100%' }} alt="Image"></img></div>
+                    <div className="panel-body"><img src={this.props.movie.Poster} className="img-responsive" style={{ width: '100%' }} alt="Poster"></img></div>
                     <div className="panel-footer">{this.props.movie.Year} {this.renderAddButton()}</div>
                 </div>
         );

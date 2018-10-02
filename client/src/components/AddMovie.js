@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieList from './MovieList';
+import { Jumbotron } from 'react-bootstrap';
 
 class AddMovie extends Component {
     constructor(){
@@ -8,16 +9,22 @@ class AddMovie extends Component {
     }
     render(){
         return(
-           <div>
-                <h3>Add Movie</h3>
-                <div className="search-container">
-                    <form onSubmit={this.handleSubmit.bind(this)}>
-                        <input type="text" placeholder="Search By Title.." name="title"/>
-                        <button type="submit">Search</button>
-                    </form>
+        <div>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div>
+                        <Jumbotron>
+                            <h3 style={{ textAlign: 'center' }}>Add Movies</h3>
+                            <div className="search-container">
+                                <form onSubmit={this.handleSubmit.bind(this)}>
+                                    <input type="text" placeholder="Search By Title.." name="title"/>
+                                    <button type="submit">Search</button>
+                                </form>
+                            </div>
+                        </Jumbotron>
+                    </div>
                 </div>
-                <br></br>
-                <MovieList search={true} movies={this.state.movies}/>
+                    <br></br>
+                    <MovieList search={true} movies={this.state.movies}/>
            </div>
         );
     }
@@ -29,7 +36,7 @@ class AddMovie extends Component {
         fetch('/api/movies/'+title, {
             method: 'GET'
         }).then(response => response.json())
-        .then(data => this.setState({movies: data}));
+        .then(data => {console.log(data); this.setState({movies: data})});
   }
 }
 

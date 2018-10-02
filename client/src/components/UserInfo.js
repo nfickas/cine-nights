@@ -13,15 +13,17 @@ class UserInfo extends Component{
             default:
                 return [
                     <Image style={{width: 200, height:200}}circle key="1" src={this.props.auth.picture}></Image>,
-                    <h5 key="2">{this.props.auth.profileName}</h5>
+                    <div className='name' style={{ textAlign: 'center' }}><h3 key="2">{this.props.auth.profileName}</h3></div>,
                 ];
         }
     }
 
     render(){
         return(
-            <div className="center">
-                {this.renderContent()}
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <div>
+                    {this.renderContent()}
+                </div>
             </div>
 
         );

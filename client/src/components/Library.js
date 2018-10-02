@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MovieList from './MovieList';
 import UserInfo from './UserInfo';
+import { Jumbotron } from 'react-bootstrap';
 
 
 class Library extends Component {
@@ -25,13 +26,20 @@ class Library extends Component {
 
     render(){
         return(
-            <div className="App">
-                <UserInfo />
-                <Link 
-                        to="library/movies/new"
-                >
-                Add Movie
-                </Link>
+            <div className='library'>
+                <Jumbotron>
+                    <UserInfo />
+                    <br />
+                    <br />
+                    <div className='buttons' style={{ textAlign: 'center' }}>
+                        <Link 
+                                to="library/movies/new"
+                        >
+                        <button type="button" className="btn btn-success">Add Movies</button>
+                        </Link>
+                        <button type="button" className="btn btn-danger">Delete Movies</button>
+                    </div>
+                </Jumbotron>
                 <MovieList search={false} movies={this.state.movies} />
             </div>
         );
