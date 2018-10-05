@@ -40,7 +40,7 @@ class Library extends Component {
                         <button type="button" className="btn btn-danger">Delete Movies</button>
                     </div>
                 </Jumbotron>
-                <MovieList search={false} movies={this.state.movies} />
+                <MovieList delete={true} search={false} movies={this.state.movies} />
             </div>
         );
     }

@@ -12,7 +12,7 @@ class UserInfo extends Component{
                 return;
             default:
                 return [
-                    <Image style={{width: 200, height:200}}circle key="1" src={this.props.auth.picture}></Image>,
+                    <Image style={{width: 200, height: 200}}circle key="1" src={`http://graph.facebook.com/${this.props.auth.facebookId}/picture?height=200&width=200`}></Image>,
                     <div className='name' style={{ textAlign: 'center' }}><h3 key="2">{this.props.auth.profileName}</h3></div>,
                 ];
         }

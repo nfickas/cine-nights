@@ -35,4 +35,15 @@ module.exports = (app) => {
             });
         });
     });
+
+    app.delete('/api/movies/:id', (req, res) => {
+        User.findOneAndUpdate({facebookId: req.user.facebookId}, {$pullAll: {movies: [req.params.id]}}, function(err, doc){
+            if(err) {
+                res.status(400).send("Unable to delete movie from your library");
+            }
+            else{
+                res.sendStatus(200);
+            }
+        });
+    });
 };

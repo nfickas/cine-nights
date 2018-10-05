@@ -16,7 +16,8 @@ class MovieList extends Component {
           moviesArrays.push(currArray);
         }
       }
-      return moviesArrays.map((movieArray) => <MovieRow key={moviesArrays.indexOf(movieArray)} search={this.props.search} movies={movieArray} />);
+      return moviesArrays.map((movieArray) => <MovieRow key={moviesArrays.indexOf(movieArray)} delete={this.props.delete} 
+                                                search={this.props.search} movies={movieArray} />);
     }
   }
 

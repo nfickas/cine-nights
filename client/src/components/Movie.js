@@ -20,7 +20,16 @@ class Movie extends Component {
             body: data
         })
         .then(res => alert(`${this.props.movie.Title} was added to your library!`))
-        .catch(res => alert('This movie could not be added.'));
+        .catch(err => alert('This movie could not be added.'));
+    }
+
+    deleteMovie(){
+        fetch('/api/movies/'+this.props.movie.imdbID, {
+            credentials: 'include',
+            method: 'DELETE',
+        })
+        .then(res => {alert(`${this.props.movie.Title} was deleted from your library.`); window.location.reload(true);})
+        .catch(err => alert('Something went wrong.'));
     }
 
     renderAddButton(){
@@ -29,12 +38,20 @@ class Movie extends Component {
         }
         return;
     }
+
+    renderDeleteButton(){
+        if(this.props.delete){
+            return <button onClick={this.deleteMovie.bind(this)} className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">remove_circle</i></button>;
+        }
+        return;
+    }
+
     render(){
         return(
                 <div className="panel panel-primary">
-                    <div className="panel-heading">{this.props.movie.Title}</div>
-                    <div className="panel-body"><img src={this.props.movie.Poster} className="img-responsive" style={{ width: '100%' }} alt="Poster"></img></div>
-                    <div className="panel-footer">{this.props.movie.Year} {this.renderAddButton()}</div>
+                    <div className="panel-heading" style={{ height: 50, textAlign: 'center' }}>{this.props.movie.Title}</div>
+                    <div className="panel-body"><img src={this.props.movie.Poster} className="img-responsive" style={{ width: '100%', height: 350 }} alt="Poster"></img></div>
+                    <div className="panel-footer">{this.props.movie.Year} {this.renderAddButton()} {this.renderDeleteButton()}</div>
                 </div>
         );
     }
