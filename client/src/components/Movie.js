@@ -48,10 +48,11 @@ class Movie extends Component {
 
     render(){
         return(
+
                 <div className="panel panel-primary">
                     <div className="panel-heading" style={{ height: 50, textAlign: 'center' }}>{this.props.movie.Title}</div>
                     <div className="panel-body"><img src={this.props.movie.Poster} className="img-responsive" style={{ width: '100%', height: 350 }} alt="Poster"></img></div>
-                    <div className="panel-footer">{this.props.movie.Year} {this.renderAddButton()} {this.renderDeleteButton()}</div>
+                    <div className="panel-footer"><div style={{display: 'flex', justifyContent: 'space-between'}}>{this.props.movie.Year} <div style={{justifyContent: 'space-evenly'}}>{this.renderAddButton()} {this.renderDeleteButton()}</div></div></div>
                 </div>
         );
     }
